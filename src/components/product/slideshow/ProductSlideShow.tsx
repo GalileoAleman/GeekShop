@@ -13,7 +13,7 @@ import './slideshow.css';
 import { useState } from 'react';
 
 // import required modules
-import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
+import { Autoplay, FreeMode, Navigation, Thumbs } from 'swiper/modules';
 import Image from 'next/image';
 
 interface Props {
@@ -33,14 +33,15 @@ export const ProductSlideShow = ({images,title,className}: Props) => {
             <Swiper
                 style={
                     {
-                        '--swiper-navigation-color': '#000',
-                        '--swiper-pagination-color': '#000',
+                        '--swiper-navigation-color': '#e11d48',
+                        '--swiper-pagination-color': '#e11d48',
                     } as React.CSSProperties
                 }
                     spaceBetween={10}
                     navigation={true}
+                    autoplay={{delay:3000}}
                     thumbs={{ swiper: thumbsSwiper }}
-                    modules={[FreeMode, Navigation, Thumbs]}
+                    modules={[FreeMode, Navigation, Thumbs, Autoplay]}
                     className="mySwiper2">
 
                 {
@@ -51,6 +52,30 @@ export const ProductSlideShow = ({images,title,className}: Props) => {
                             height={800}
                             src={`/geek-products/${image}`}
                             alt={title}
+                            className="rounded-lg object-fill"
+                        />
+                        </SwiperSlide>
+                    ))
+                }
+            </Swiper>
+            <Swiper
+                onSwiper={setThumbsSwiper}
+                spaceBetween={10}
+                slidesPerView={4}
+                freeMode={true}
+                watchSlidesProgress={true}
+                modules={[FreeMode, Navigation, Thumbs]}
+                className="mySwiper">
+
+                {           
+                    images.map((image) => (
+                        <SwiperSlide key={image}>
+                        <Image
+                            width={300}
+                            height={300}
+                            src={`/geek-products/${image}`}
+                            alt={title}
+                            className="rounded-lg object-fill"
                         />
                         </SwiperSlide>
                     ))

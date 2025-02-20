@@ -83,6 +83,13 @@ export const Sidebar = () => {
                     <IoShirtOutline size={30} className="ml-3 text-xl"/>
                     <span className="ml-3 text-xl">Productos</span>
             </Link>
+
+            <Link
+                href={"/"}
+                className="flex items-center mt-10 p-2 hover:bg-gray-700 rounded transition-all">
+                    <IoTicketOutline size={30} className="ml-3 text-xl"/>
+                    <span className="ml-3 text-xl">Ordenes</span>
+            </Link>
         </nav>
     </div>
   )
