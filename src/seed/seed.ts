@@ -1,3 +1,5 @@
+import bcryptjs from 'bcryptjs';
+
 interface GeekProduct {
     description: string;
     images: string[];
@@ -12,14 +14,42 @@ interface GeekProduct {
     type: GeekProductType;
   }
   
+  interface BetaUser{
+    email: string;
+    password: string;
+    name: string;
+    role: ValidRole;
+  }
+
+  type ValidRole= 'admin' | 'user';
+
   type ValidCategories = 'anime' | 'comic';
   type GeekProductType = 'figurine' | 'manga' | 'poster' | 'accessory';
   
   interface SeedData {
+    users: BetaUser[];
     products: GeekProduct[];
+    categories: string[];
   }
   
   export const initialData: SeedData = {
+    users:[
+      {
+        email: "gali@gmail.com",
+        name: "Galileo",
+        password: bcryptjs.hashSync("gali123"),
+        role: "admin"
+      },
+      {
+        email: "andree@gmail.com",
+        name: "Andree",
+        password: bcryptjs.hashSync("andree123"),
+        role: "user"
+      }
+    ],
+    categories: [
+      'Figurine', 'Manga', 'Poster', 'Accessory'
+    ],
     products: [
       // ======================
       // Productos de la categoría ANIME

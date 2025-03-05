@@ -2,7 +2,6 @@ import { Title } from "@/components";
 import { initialData } from "@/seed/seed";
 import clsx from "clsx";
 import Image from "next/image";
-import Link from "next/link";
 import { IoCarOutline } from "react-icons/io5";
 
 const productsInCart = [
@@ -15,10 +14,10 @@ const productsInCart = [
 interface Props {
     params: {
         id: string;
-    }
+    };
 }
 
-export default function OrdersPage({params}: Props){
+export default function OrderPage({params}: Props){
 
     const{id} = params;
 

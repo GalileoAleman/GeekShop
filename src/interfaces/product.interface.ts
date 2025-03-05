@@ -1,4 +1,5 @@
 export interface Product {
+    id: string;
     description: string;
     images: string[];
     inStock: number;
@@ -10,5 +11,5 @@ export interface Product {
     type: Type;
   }
   
-export type Category = 'anime' | 'comic';
-export type Type = 'figurine' | 'manga' | 'poster' | 'accessory';
+export type Type = 'anime' | 'comic';
+export type Category = 'figurine' | 'manga' | 'poster' | 'accessory';

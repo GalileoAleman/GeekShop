@@ -3,8 +3,11 @@ import "./globals.css";
 import { roboto } from "@/config/fonts";
 
 export const metadata: Metadata = {
-  title: "Geek | Shop",
-  description: "E-commerce Geek",
+  title: {
+    template: '%s - Geek | Shop',
+    default: 'Home - Geek | Shop'
+  },
+  description: "Tienda virtual Geek",
 };
 
 export default function RootLayout({

@@ -23,13 +23,13 @@ export const TopMenu = () => {
       <div className="hidden sm:block">
         <Link 
           className={`${titleFont} m-2 p-2 rounded-md transition-all hover:bg-gray-700`} 
-          href="/category/anime"
+          href="/type/anime"
         >
           Animes
         </Link>
         <Link 
           className={`${titleFont} m-2 p-2 rounded-md transition-all hover:bg-gray-700`} 
-          href="/category/comic"
+          href="/type/comic"
         >
           Cómics
         </Link>

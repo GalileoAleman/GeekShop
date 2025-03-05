@@ -1,8 +1,10 @@
+export const revalidate = 604800;
 
 import { notFound } from 'next/navigation';
-import { initialData } from '../../../../seed/seed';
 import { titleFont } from '@/config/fonts';
-import { ProductMobileSlideShow, ProductSlideShow, QuantitySelector } from '@/components';
+import { ProductMobileSlideShow, ProductSlideShow, QuantitySelector, StockLabel } from '@/components';
+import { getProductBySlug } from '@/actions';
+import { Metadata } from 'next';
 
 interface Props {
     params:{
@@ -10,10 +12,26 @@ interface Props {
     }
 }
 
-export default function ProductPage({params}: Props){
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+    const slug = params.slug;
+
+    const product = await getProductBySlug(slug);
+
+    return {
+        title: product?.title ?? "Producto no encontrado",
+        description: product?.description ?? "",
+        openGraph: {
+        title: product?.title ?? "Producto no encontrado",
+        description: product?.description ?? "",
+        images: [ `/products/${ product?.images[0] }`],
+        },
+    };
+}
+
+export default async function ProductPage({params}: Props){
     
     const {slug} = params;
-    const product = initialData.products.find(product => product.slug === slug)
+    const product = await getProductBySlug(slug);
     
     if(!product){
         notFound();
@@ -37,10 +55,10 @@ export default function ProductPage({params}: Props){
             </div>
 
             {/* Detalles */}
-            <div className="col-span-1 px-5">
+            <div className="col-span-1 px-5">   
                 <h1 className={`${titleFont.className} antialiased font-bold text-xl`}>{product.title}</h1>
-                <p className="text-lg mb-5">${product.price}</p>
-
+                <p className="text-lg">${product.price}</p>
+                <StockLabel slug={product.slug}/>
                 <QuantitySelector quantity={1} stock={product.inStock}/>
 
                 <button className="btn-primary my-5">
