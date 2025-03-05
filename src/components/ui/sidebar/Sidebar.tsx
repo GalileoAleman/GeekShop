@@ -4,6 +4,7 @@ import Link from "next/link"
 import { IoCloseOutline, IoLogInOutline, IoLogOutOutline, IoPersonOutline, IoSearchOutline, IoShirtOutline, IoTicketOutline } from "react-icons/io5"
 import { useUIStore } from '@/store'
 import clsx from "clsx"
+import { logout } from "@/actions"
 
 export const Sidebar = () => {
 
@@ -63,18 +64,19 @@ export const Sidebar = () => {
             </Link>
 
             <Link
-                href={"/"}
+                href={"/auth/login"}
+                onClick={closeMenu}  
                 className="flex items-center mt-10 p-2 hover:bg-gray-700 rounded transition-all">
                     <IoLogInOutline size={30} className="ml-3 text-xl"/>
                     <span className="ml-3 text-xl">Ingresar</span>
             </Link>
 
-            <Link
-                href={"/"}
-                className="flex items-center mt-10 p-2 hover:bg-gray-700 rounded transition-all">
+            <button
+                onClick={() => logout()}  
+                className="flex w-full items-center mt-10 p-2 hover:bg-gray-700 rounded transition-all">
                     <IoLogOutOutline size={30} className="ml-3 text-xl"/>
                     <span className="ml-3 text-xl">Salir</span>
-            </Link>
+            </button>
 
             <div className="w-full h-px bg-gray-300 my-10"/>
 
