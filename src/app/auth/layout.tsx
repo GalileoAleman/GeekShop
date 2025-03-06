@@ -10,7 +10,7 @@ export default async function AuthLayout({
   const session = await auth();
 
   if(session?.user)
-    redirect("/")
+    redirect("/");
 
   return (
     <main className="flex justify-center">
