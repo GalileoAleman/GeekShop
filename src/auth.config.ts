@@ -10,6 +10,9 @@ export const authConfig: NextAuthConfig = {
     newUser: '/auth/new-account'
   },
   callbacks:{
+    authorized({ auth, request: { nextUrl } }) {
+      return true;
+    },
     jwt({token, user}){
       if(user){
         token.data = user;

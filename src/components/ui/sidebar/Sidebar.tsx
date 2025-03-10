@@ -6,7 +6,6 @@ import { useUIStore } from '@/store'
 import clsx from "clsx"
 import { logout } from "@/actions"
 import { useSession } from "next-auth/react"
-import { useRouter } from "next/router";
 
 export const Sidebar = () => {
 

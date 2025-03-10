@@ -2,9 +2,10 @@ export const revalidate = 604800;
 
 import { notFound } from 'next/navigation';
 import { titleFont } from '@/config/fonts';
-import { ProductMobileSlideShow, ProductSlideShow, QuantitySelector, StockLabel } from '@/components';
+import { ProductMobileSlideShow, ProductSlideShow } from '@/components';
 import { getProductBySlug } from '@/actions';
 import { Metadata } from 'next';
+import { AddToCart } from './ui/AddToCart';
 
 interface Props {
     params:{
@@ -13,8 +14,8 @@ interface Props {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-    const slug = params.slug;
-
+    const resolvedParams = await params;
+    const slug = resolvedParams.slug;
     const product = await getProductBySlug(slug);
 
     return {
@@ -30,7 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ProductPage({params}: Props){
     
-    const {slug} = params;
+    const { slug } = await params;
     const product = await getProductBySlug(slug);
     
     if(!product){
@@ -58,12 +59,8 @@ export default async function ProductPage({params}: Props){
             <div className="col-span-1 px-5">   
                 <h1 className={`${titleFont.className} antialiased font-bold text-xl`}>{product.title}</h1>
                 <p className="text-lg">${product.price}</p>
-                <StockLabel slug={product.slug}/>
-                <QuantitySelector quantity={1} stock={product.inStock}/>
 
-                <button className="btn-primary my-5">
-                    Agregar al carrito
-                </button>
+                <AddToCart product={product}/>
 
                 <h3 className="font-bold text-sm">Descripción</h3>
                 <p className="font-light">{product.description}</p>
