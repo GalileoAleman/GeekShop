@@ -1,5 +1,6 @@
 import { initialData } from "./seed";
 import { prisma } from '../lib/prisma';
+import { countries } from "./seed-countries";
 
 //Se carga informacion de prueba para la base de dato de desarrollo
 async function main(){
@@ -9,6 +10,7 @@ async function main(){
     await prisma.productImage.deleteMany();
     await prisma.product.deleteMany();
     await prisma.category.deleteMany();
+    await prisma.country.deleteMany();
 
     //Se usa los datos de prebas de la semilla de productos Geeks
     const {categories, products, users} = initialData
@@ -53,6 +55,9 @@ async function main(){
             data: imgData
         });
     });
+
+    //Se carga la tabla de los paises
+    await prisma.country.createMany({data: countries});
 
     console.log("Proceso exitoso.")
 }

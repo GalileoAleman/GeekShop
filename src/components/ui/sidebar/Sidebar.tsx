@@ -17,9 +17,9 @@ export const Sidebar = () => {
   const isAdmin = (session?.user.role === "admin");
 
   const handleLogout = async () => {
-    await signOut({ redirect: false }); // Cierra sesión sin redirigir automáticamente
+    await signOut({ redirect: false });
     closeMenu();
-    router.refresh(); // Actualiza la UI para reflejar el cambio en la sesión
+    router.refresh();
   };
 
   return (

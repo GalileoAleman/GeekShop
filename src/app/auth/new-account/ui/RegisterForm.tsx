@@ -40,12 +40,18 @@ export const RegisterForm = () => {
             <label htmlFor="name">Nombre completo</label>
             <input
                 className={clsx(
-                    "text-black px-5 py-2 border bg-gray-50 border-gray-200 focus:outline-none rounded mb-1",
+                    "text-black px-5 py-2 border bg-gray-50 focus:outline-none rounded mb-1",
                     { 'border-red-500': errors.name }
                 )}
                 type="text"
                 autoFocus 
-                {...register('name', { required: "El nombre es obligatorio" })}
+                {...register('name', { 
+                    required: "El nombre es obligatorio",
+                    pattern: { 
+                        value: /^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$/, 
+                        message: "El nombre solo puede contener letras y espacios" 
+                    }
+                })}
             />
             {errors.name && <span className="text-red-500 text-sm mb-2">{errors.name.message}</span>}
 
@@ -53,7 +59,7 @@ export const RegisterForm = () => {
             <label htmlFor="email">Correo electrónico</label>
             <input
                 className={clsx(
-                    "text-black px-5 py-2 border bg-gray-50 border-gray-200 focus:outline-none rounded mb-1",
+                    "text-black px-5 py-2 border bg-gray-50 focus:outline-none rounded mb-1 border-green-600",
                     { 'border-red-500': errors.email }
                 )}
                 type="email"
@@ -68,7 +74,7 @@ export const RegisterForm = () => {
             <label htmlFor="password">Contraseña</label>
             <input
                 className={clsx(
-                    "text-black px-5 py-2 border bg-gray-50 border-gray-200 focus:outline-none rounded mb-1",
+                    "text-black px-5 py-2 border bg-gray-50 focus:outline-none rounded mb-1 border-green-600",
                     { 'border-red-500': errors.password }
                 )}
                 type="password"
