@@ -4,11 +4,11 @@ import Link from "next/link"
 import { IoCloseOutline, IoLogInOutline, IoLogOutOutline, IoPersonOutline, IoSearchOutline, IoShirtOutline, IoTicketOutline } from "react-icons/io5"
 import { useUIStore } from '@/store'
 import clsx from "clsx"
-import { logout } from "@/actions"
-import { useSession } from "next-auth/react"
+import { signOut, useSession } from "next-auth/react"
+import { useRouter } from "next/navigation";
 
 export const Sidebar = () => {
-
+    const router = useRouter();
   const isSideMenuOpen = useUIStore(state => state.isSideMenuOpen);
   const closeMenu = useUIStore(state => state.closeSideMenu);
 
@@ -17,9 +17,10 @@ export const Sidebar = () => {
   const isAdmin = (session?.user.role === "admin");
 
   const handleLogout = async () => {
-    logout();
+    await signOut({ redirect: false }); // Cierra sesión sin redirigir automáticamente
     closeMenu();
-};
+    router.refresh(); // Actualiza la UI para reflejar el cambio en la sesión
+  };
 
   return (
     <div>
