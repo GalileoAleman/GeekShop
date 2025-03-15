@@ -92,7 +92,7 @@ model Order {
   fee Float
   total Float
   items Int
-  isPaid Boolean
+  isPaid Boolean @default(false)
   paidDate DateTime?
   created DateTime @default(now())
   updated DateTime @updatedAt

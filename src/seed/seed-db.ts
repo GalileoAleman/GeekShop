@@ -6,15 +6,15 @@ import { countries } from "./seed-countries";
 async function main(){
 
     //Se borran las tablas 
+    await prisma.orderAddress.deleteMany();
+    await prisma.orderProduct.deleteMany();
+    await prisma.order.deleteMany();
     await prisma.user.deleteMany();
     await prisma.productImage.deleteMany();
     await prisma.product.deleteMany();
     await prisma.category.deleteMany();
     await prisma.country.deleteMany();
     await prisma.userAddress.deleteMany();
-    await prisma.orderAddress.deleteMany();
-    await prisma.orderProduct.deleteMany();
-    await prisma.order.deleteMany();
 
     //Se usa los datos de prebas de la semilla de productos Geeks
     const {categories, products, users} = initialData

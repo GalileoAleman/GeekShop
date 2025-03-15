@@ -1,5 +1,6 @@
 'use client';
 
+import { placeOrder } from "@/actions";
 import { useAddressStore, useCartStore } from "@/store";
 import { currencyFormat } from "@/utils";
 import clsx from "clsx";
@@ -14,7 +15,8 @@ export const PlaceOrder = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const router = useRouter();
 
-    const cart = useCartStore(state => state.cart);
+    const cart = useCartStore(state => state.cart)
+    const clearCart = useCartStore(state => state.clearCart);
 
     // Calculamos el resumen de forma memoizada
     const summary = useMemo(() => {
@@ -45,7 +47,7 @@ export const PlaceOrder = () => {
     
     
         //! Server Action
-        const resp = await placeOrder( productsOrder, address);
+        const resp = await placeOrder(productsOrder, address);
 
         if (!resp.ok) {
           setIsPlacingOrder(false);
@@ -53,9 +55,9 @@ export const PlaceOrder = () => {
           return;
         }
     
-        //* Todo salio bien!
+        //La transaccion salio bien
         clearCart();
-        router.replace('/orders/' + resp.order?.id );
+        router.replace('/orders/' + resp.order?.id);
     }
 
     return (

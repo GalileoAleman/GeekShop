@@ -35,7 +35,7 @@ export const AddressForm = ({countries, userStoredAddress = {}}: Props) => {
     const {handleSubmit, register, formState: {isValid, errors}, reset} = useForm<FormInputs>({
         defaultValues: {
           ...(userStoredAddress as any),
-          rememberAddress: false,
+          saveAddress: false,
         },
         mode: "onBlur"
       });
