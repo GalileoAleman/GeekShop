@@ -13,3 +13,4 @@ export * from './ui/pagination/Pagination';
 export * from './products/stock/StockLabel';
 export * from './ui/provider/Provider';
 export * from './paypal/PayPalButton';
+export * from './orders/OrderStatus';

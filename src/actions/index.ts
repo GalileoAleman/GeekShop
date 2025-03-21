@@ -10,4 +10,6 @@ export * from './address/set-user-address'
 export * from './address/del-user-address'
 export * from './address/get-user-address'
 export * from './order/place-order'
+export * from './payments/paypal/set-transaction-id'
+export * from './payments/paypal/check-payment'
 
