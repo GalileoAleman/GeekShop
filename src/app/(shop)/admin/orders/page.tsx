@@ -1,14 +1,14 @@
 export const revalidate = 0;
 
-import { getOrdersByUser } from '@/actions/order/get-orders-by-user';
+import { getOrders } from '@/actions';
 import { Title } from '@/components';
 
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { IoCardOutline } from 'react-icons/io5';
 
-export default async function OrdersPage() {
-  const {ok, orders = []} = await getOrdersByUser();
+export default async function OrdersAdminPage() {
+  const {ok, orders = []} = await getOrders();
 
   if (!ok) {
     redirect("/auth/login");
@@ -16,7 +16,7 @@ export default async function OrdersPage() {
 
   return (
     <>
-      <Title title="Ordenes" />
+      <Title title="Todas las Ordenes" />
 
       <div className="mb-10">
         <table className="min-w-full">
