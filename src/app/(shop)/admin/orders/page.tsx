@@ -16,22 +16,22 @@ export default async function OrdersAdminPage() {
 
   return (
     <>
-      <Title title="Todas las Ordenes" />
+      <Title title="Gestión de Ordenes" />
 
       <div className="mb-10">
         <table className="min-w-full">
           <thead className="bg-gray-200 border-b">
             <tr>
-              <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+              <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-center">
                 #ID
               </th>
-              <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+              <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-center">
                 Nombre completo
               </th>
-              <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+              <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-center">
                 Estado
               </th>
-              <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+              <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-center">
                 Opciones
               </th>
             </tr>
@@ -40,15 +40,14 @@ export default async function OrdersAdminPage() {
             {orders.map((order) => (
                 <tr
                   key={order.id}
-                  className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100"
-                >
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
                     {order.id.split("-").at(-1)}
                   </td>
-                  <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                  <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center">
                     {order.OrderAddress?.firstName} {order.OrderAddress?.lastName}
                   </td>
-                  <td className="flex items-center text-sm  text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                  <td className="flex justify-center items-center text-sm  text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center">
                     {order.isPaid ? (
                       <>
                         <IoCardOutline className="text-green-800" />
@@ -61,7 +60,7 @@ export default async function OrdersAdminPage() {
                       </>
                     )}
                   </td>
-                  <td className="text-sm text-primary font-light px-6 ">
+                  <td className="text-sm text-primary font-light px-6 text-center">
                     <Link href={`/orders/${ order.id }`} className="hover:underline">
                       Ver orden
                     </Link>

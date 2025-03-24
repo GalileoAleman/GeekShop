@@ -14,4 +14,6 @@ export * from './payments/paypal/set-transaction-id'
 export * from './payments/paypal/check-payment'
 export * from './order/get-orders'
 export * from './user/get-users'
+export * from './category/get-category'
+export * from './product/create-update-product'
 

@@ -14,7 +14,7 @@ export default async function OrdersAdminPage() {
 
   return (
     <>
-      <Title title="Usuarios" />
+      <Title title="Gestión de Usuarios" />
 
       <div className="mb-10">
         <UsersTable users={users}/>

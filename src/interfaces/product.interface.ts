@@ -22,4 +22,4 @@ export interface CartProduct {
 }
 
 export type Type = 'anime' | 'comic';
-export type Category = 'figurine' | 'manga' | 'poster' | 'accessory';
+type Category = 'figurine' | 'manga' | 'poster' | 'accessory';
