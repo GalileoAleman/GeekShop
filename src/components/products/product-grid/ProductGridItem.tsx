@@ -4,6 +4,7 @@ import { Product } from "@/interfaces"
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { ProductImg } from "../product-img/ProductImg";
 
 interface Props{
     product: Product;
@@ -16,7 +17,7 @@ export const ProductGridItem = ({product}: Props) => {
   return (
     <div className="rounded-md overflow-hidden fade-in">
         <Link href={`/product/${product.slug}`}>
-            <Image src={`/geek-products/${displayImage}`}
+            <ProductImg src={displayImage}
             alt={product.title}
             className="w-full object-cover rounded-md"
             width={500}

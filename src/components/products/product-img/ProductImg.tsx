@@ -1,15 +1,13 @@
-import Image from "next/image";
+import Image, { ImageProps } from "next/image";
 
-interface Props {
+interface Props extends Omit<ImageProps, 'src' | 'alt'> {
     src?: string;
     alt: string;
-    className?: React.StyleHTMLAttributes<HTMLImageElement>['className'];
-    style?: React.StyleHTMLAttributes<HTMLImageElement>['style'];
     width: number;
     height: number;
 }
-
-export const ProductImg = ({src, alt, className, style, width, height}: Props) => {
+  
+export const ProductImg = ({ src, alt, width, height, ...rest }: Props) => {
 
     const localSrc = (src) ? src.startsWith('http') // La url completa de la imagen
         ? src
@@ -19,11 +17,10 @@ export const ProductImg = ({src, alt, className, style, width, height}: Props) =
     return (
         <Image
             src={localSrc}
+            alt={alt}
             width={width}
             height={height}
-            alt={alt}
-            className={className}
-            style={style}
+            {...rest}
         />
     );
 };
