@@ -1,14 +1,14 @@
 "use client";
 
-import { createUpdateProduct } from "@/actions";
-import { Product, ProductImg } from "@/interfaces";
+import { createUpdateProduct, deleteProductImage } from "@/actions";
+import { ProductImg } from "@/components";
+import { Product, ProductImage } from "@/interfaces";
 import { Category } from "@/interfaces/category.interface";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 
 interface Props {
-    product: Partial<Product> & {ProductImage?: ProductImg[]};
+    product: Partial<Product> & {ProductImage?: ProductImage[]};
     categories: Category[];
 }
 
@@ -159,15 +159,16 @@ export const ProductAdminForm = ({product, categories}: Props) => {
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                         {product.ProductImage?.map((image) => (
                             <div key={image.id}>
-                                <Image
+                                <ProductImg
                                     alt={product.title ?? ""}
-                                    src={`/geek-products/${image.url}`}
+                                    src={image.url}
                                     width={300}
                                     height={300}
                                     className="rounded-t shadow-md"/>
 
                                 <button
                                     type="button"
+                                    onClick={() => deleteProductImage(image.id, image.url)}
                                     className="btn-danger w-full rounded-b-xl">
                                         Eliminar
                                 </button>
