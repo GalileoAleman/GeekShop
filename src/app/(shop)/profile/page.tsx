@@ -52,10 +52,23 @@ export default async function ProfilePage() {
               <span className="font-medium">Correo:</span> {email}
             </div>
   
-            <Link href="/orders" className="block hover:bg-gray-100 rounded-mdtransition-colors">
+            <Link href={role === "admin" ? "admin/orders" : "/orders"} className="block hover:bg-gray-100 rounded-mdtransition-colors">
                 <div className="flex items-center gap-3">
                     <IoListOutline size={30} className="text-primary" />
-                    <span className="font-medium">Órdenes:</span> {ordersCount}
+                    {
+                        role === "admin" 
+                            ? (
+                                <>
+                                    <span className="font-medium">Órdenes</span>
+                                </>
+                            ) 
+                            : (
+                                <>
+                                    <span className="font-medium">Tus órdenes:</span>
+                                    <span>{ordersCount}</span>
+                                </>
+                            )
+                    }
                 </div>
             </Link>
           </div>
