@@ -17,4 +17,5 @@ export * from './user/get-users'
 export * from './category/get-category'
 export * from './product/create-update-product'
 export * from './product/delete-product-img'
+export * from './product/get-product-by-query'
 
