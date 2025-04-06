@@ -2,6 +2,7 @@
 
 import { titleFont } from "@/config/fonts"
 import { useCartStore, useUIStore } from "@/store"
+import Image from "next/image";
 import Link from "next/link"
 import { useEffect, useState } from "react";
 import { IoSearchOutline, IoCartOutline } from "react-icons/io5"
@@ -20,15 +21,21 @@ export const TopMenu = () => {
   return (
     <nav className="flex px-5 justify-between items-center w-full bg-[#141F27] text-white">
       {/* Logo */}
-      <div>
-        <Link href="/">
+      <Link href="/" className="flex items-center gap-2">
+      <Image className="rounded-full"
+        src="/imgs/favicon-png.png"
+        alt="Geek Shop Icon"
+        width={30}
+        height={30}/>
+        
+        <div className="flex items-center">
           <span className={`${titleFont} antialiased font-bold`}>Geek</span>
           <span className={titleFont.className}> | Shop</span>
-        </Link>
-      </div>
+        </div>
+      </Link>
 
       {/* Center Menu */}
-      <div className="hidden sm:block">
+      <div className="sm:block">
         <Link 
           className={`${titleFont} m-2 p-2 rounded-md transition-all hover:bg-gray-700`} 
           href="/type/anime"
